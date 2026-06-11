@@ -28,7 +28,7 @@ def add_expense(expenses):
         "date": date
     })
 
-    print("✅ Expense added successfully!")
+    print("Expense added successfully!")
 
 # View expenses
 def view_expenses(expenses):
@@ -36,24 +36,29 @@ def view_expenses(expenses):
         print("No expenses found!")
         return
 
-    print("\n📊 Your Expenses:")
+    print("\n Your Expenses:")
     for i, exp in enumerate(expenses, 1):
         print(f"{i}. ₹{exp['amount']} - {exp['category']} - {exp['date']}")
 
 # Delete expense
 def delete_expense(expenses):
+    if not expenses:
+        print("No expenses to delete!")
+        return
+
     view_expenses(expenses)
+
     try:
         idx = int(input("Enter expense number to delete: ")) - 1
         expenses.pop(idx)
-        print("🗑️ Expense deleted!")
+        print(" Expense deleted!")
     except:
         print("Invalid input!")
 
 # Show total
 def show_total(expenses):
     total = sum(exp["amount"] for exp in expenses)
-    print(f"\n💰 Total Spending: ₹{total}")
+    print(f"\n Total Spending: ₹{total}")
 
 # Main program
 expenses = load_expenses()
